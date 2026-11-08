@@ -1,0 +1,414 @@
+[
+  {
+    "id": "bengkel",
+    "builtin": true,
+    "name": "Bengkel Mobil",
+    "description": "Mobil mendaftar ke resepsionis, diperbaiki salah satu dari 2 montir, lalu membayar di resepsionis yang sama. Rata-rata waktu berasal dari 8 data historis bengkel, bentuk distribusinya diasumsikan eksponensial karena hanya rata-rata yang diketahui.",
+    "entity_name": "Mobil",
+    "time_unit": "menit",
+    "max_entities": 8,
+    "arrival": {
+      "type": "exponential",
+      "mean": 7.25
+    },
+    "resources": [
+      {
+        "name": "Resepsionis",
+        "capacity": 1
+      },
+      {
+        "name": "Montir",
+        "capacity": 2
+      }
+    ],
+    "stages": [
+      {
+        "name": "Pendaftaran",
+        "resource": "Resepsionis",
+        "service": {
+          "type": "exponential",
+          "mean": 2.625
+        }
+      },
+      {
+        "name": "Perbaikan",
+        "resource": "Montir",
+        "service": {
+          "type": "exponential",
+          "mean": 22.5
+        }
+      },
+      {
+        "name": "Pembayaran",
+        "resource": "Resepsionis",
+        "service": {
+          "type": "exponential",
+          "mean": 2.25
+        }
+      }
+    ]
+  },
+  {
+    "id": "bengkel-ramai",
+    "builtin": true,
+    "name": "Bengkel Ramai (2 montir)",
+    "description": "Bengkel dengan 2 montir saat kedatangan ramai, rata-rata satu mobil tiap 12 menit. Montir hampir selalu sibuk. Dipakai sebagai pembanding.",
+    "entity_name": "Mobil",
+    "time_unit": "menit",
+    "max_entities": 60,
+    "arrival": {
+      "type": "exponential",
+      "mean": 12
+    },
+    "resources": [
+      {
+        "name": "Resepsionis",
+        "capacity": 1
+      },
+      {
+        "name": "Montir",
+        "capacity": 2
+      }
+    ],
+    "stages": [
+      {
+        "name": "Pendaftaran",
+        "resource": "Resepsionis",
+        "service": {
+          "type": "normal",
+          "mean": 2.625,
+          "std": 0.5,
+          "min": 0.5
+        }
+      },
+      {
+        "name": "Perbaikan",
+        "resource": "Montir",
+        "service": {
+          "type": "normal",
+          "mean": 22.5,
+          "std": 6,
+          "min": 5
+        }
+      },
+      {
+        "name": "Pembayaran",
+        "resource": "Resepsionis",
+        "service": {
+          "type": "normal",
+          "mean": 2.25,
+          "std": 0.5,
+          "min": 0.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "bengkel-ramai-3-montir",
+    "builtin": true,
+    "name": "Bengkel Ramai + 3 montir",
+    "description": "Skenario usulan. Sama dengan Bengkel Ramai, tetapi montir ditambah menjadi tiga.",
+    "entity_name": "Mobil",
+    "time_unit": "menit",
+    "max_entities": 60,
+    "arrival": {
+      "type": "exponential",
+      "mean": 12
+    },
+    "resources": [
+      {
+        "name": "Resepsionis",
+        "capacity": 1
+      },
+      {
+        "name": "Montir",
+        "capacity": 3
+      }
+    ],
+    "stages": [
+      {
+        "name": "Pendaftaran",
+        "resource": "Resepsionis",
+        "service": {
+          "type": "normal",
+          "mean": 2.625,
+          "std": 0.5,
+          "min": 0.5
+        }
+      },
+      {
+        "name": "Perbaikan",
+        "resource": "Montir",
+        "service": {
+          "type": "normal",
+          "mean": 22.5,
+          "std": 6,
+          "min": 5
+        }
+      },
+      {
+        "name": "Pembayaran",
+        "resource": "Resepsionis",
+        "service": {
+          "type": "normal",
+          "mean": 2.25,
+          "std": 0.5,
+          "min": 0.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "bengkel-ramai-kasir",
+    "builtin": true,
+    "name": "Bengkel Ramai + kasir terpisah",
+    "description": "Skenario usulan. Pembayaran dilayani kasir sendiri, tidak lagi oleh resepsionis.",
+    "entity_name": "Mobil",
+    "time_unit": "menit",
+    "max_entities": 60,
+    "arrival": {
+      "type": "exponential",
+      "mean": 12
+    },
+    "resources": [
+      {
+        "name": "Resepsionis",
+        "capacity": 1
+      },
+      {
+        "name": "Montir",
+        "capacity": 2
+      },
+      {
+        "name": "Kasir",
+        "capacity": 1
+      }
+    ],
+    "stages": [
+      {
+        "name": "Pendaftaran",
+        "resource": "Resepsionis",
+        "service": {
+          "type": "normal",
+          "mean": 2.625,
+          "std": 0.5,
+          "min": 0.5
+        }
+      },
+      {
+        "name": "Perbaikan",
+        "resource": "Montir",
+        "service": {
+          "type": "normal",
+          "mean": 22.5,
+          "std": 6,
+          "min": 5
+        }
+      },
+      {
+        "name": "Pembayaran",
+        "resource": "Kasir",
+        "service": {
+          "type": "normal",
+          "mean": 2.25,
+          "std": 0.5,
+          "min": 0.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "klinik",
+    "builtin": true,
+    "name": "Klinik Pratama",
+    "description": "Pasien mendaftar, diperiksa dokter, lalu menebus obat di apotek. Angka contoh untuk latihan, ganti dengan data observasimu sendiri.",
+    "entity_name": "Pasien",
+    "time_unit": "menit",
+    "max_entities": 40,
+    "arrival": {
+      "type": "exponential",
+      "mean": 6
+    },
+    "resources": [
+      {
+        "name": "Petugas Pendaftaran",
+        "capacity": 1
+      },
+      {
+        "name": "Dokter",
+        "capacity": 2
+      },
+      {
+        "name": "Apoteker",
+        "capacity": 1
+      }
+    ],
+    "stages": [
+      {
+        "name": "Pendaftaran",
+        "resource": "Petugas Pendaftaran",
+        "service": {
+          "type": "normal",
+          "mean": 2,
+          "std": 0.5,
+          "min": 0.5
+        }
+      },
+      {
+        "name": "Pemeriksaan",
+        "resource": "Dokter",
+        "service": {
+          "type": "normal",
+          "mean": 10,
+          "std": 3,
+          "min": 3
+        }
+      },
+      {
+        "name": "Ambil Obat",
+        "resource": "Apoteker",
+        "service": {
+          "type": "normal",
+          "mean": 3,
+          "std": 1,
+          "min": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "spbu",
+    "builtin": true,
+    "name": "SPBU",
+    "description": "Kendaraan mengisi bahan bakar di salah satu pompa, lalu membayar di kasir. Angka contoh untuk latihan, ganti dengan data observasimu sendiri.",
+    "entity_name": "Kendaraan",
+    "time_unit": "menit",
+    "max_entities": 50,
+    "arrival": {
+      "type": "exponential",
+      "mean": 1.5
+    },
+    "resources": [
+      {
+        "name": "Pompa",
+        "capacity": 3
+      },
+      {
+        "name": "Kasir",
+        "capacity": 1
+      }
+    ],
+    "stages": [
+      {
+        "name": "Isi Bahan Bakar",
+        "resource": "Pompa",
+        "service": {
+          "type": "normal",
+          "mean": 3,
+          "std": 1,
+          "min": 1
+        }
+      },
+      {
+        "name": "Pembayaran",
+        "resource": "Kasir",
+        "service": {
+          "type": "normal",
+          "mean": 1,
+          "std": 0.3,
+          "min": 0.3
+        }
+      }
+    ]
+  },
+  {
+    "id": "bank",
+    "builtin": true,
+    "name": "Bank",
+    "description": "Nasabah dilayani teller, lalu melanjutkan ke customer service. Angka contoh untuk latihan, ganti dengan data observasimu sendiri.",
+    "entity_name": "Nasabah",
+    "time_unit": "menit",
+    "max_entities": 40,
+    "arrival": {
+      "type": "exponential",
+      "mean": 3
+    },
+    "resources": [
+      {
+        "name": "Teller",
+        "capacity": 2
+      },
+      {
+        "name": "Customer Service",
+        "capacity": 1
+      }
+    ],
+    "stages": [
+      {
+        "name": "Transaksi Teller",
+        "resource": "Teller",
+        "service": {
+          "type": "normal",
+          "mean": 5,
+          "std": 1.5,
+          "min": 1.5
+        }
+      },
+      {
+        "name": "Layanan Customer Service",
+        "resource": "Customer Service",
+        "service": {
+          "type": "normal",
+          "mean": 2,
+          "std": 0.6,
+          "min": 0.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "kantin",
+    "builtin": true,
+    "name": "Kantin Kampus",
+    "description": "Mahasiswa memesan di kasir, menunggu makanan dimasak, lalu mengambil pesanan. Angka contoh untuk latihan, ganti dengan data observasimu sendiri.",
+    "entity_name": "Mahasiswa",
+    "time_unit": "menit",
+    "max_entities": 60,
+    "arrival": {
+      "type": "exponential",
+      "mean": 1
+    },
+    "resources": [
+      {
+        "name": "Kasir",
+        "capacity": 1
+      },
+      {
+        "name": "Juru Masak",
+        "capacity": 3
+      }
+    ],
+    "stages": [
+      {
+        "name": "Pemesanan",
+        "resource": "Kasir",
+        "service": {
+          "type": "normal",
+          "mean": 0.8,
+          "std": 0.2,
+          "min": 0.3
+        }
+      },
+      {
+        "name": "Memasak",
+        "resource": "Juru Masak",
+        "service": {
+          "type": "normal",
+          "mean": 2.5,
+          "std": 0.8,
+          "min": 1
+        }
+      }
+    ]
+  }
+]
