@@ -1,0 +1,63 @@
+<section id="page-panduan" class="page" data-page="panduan" hidden>
+  <div class="container">
+    <h2 class="section-title">Panduan</h2>
+
+    <div class="grid grid-3">
+      <article class="card card-yellow">
+        <h3>Simulation clock</h3>
+        <p>Jam simulasi tidak berjalan pelan-pelan. Ia melompat langsung ke waktu kejadian berikutnya, jadi simulasi berjam-jam selesai dalam sekejap.</p>
+      </article>
+      <article class="card card-blue">
+        <h3>Event Calendar</h3>
+        <p>Daftar kejadian yang akan datang, selalu terurut menurut waktu. Ada dua jenis kejadian: ARRIVAL saat entitas datang dan DEPARTURE saat layanan satu tahap selesai.</p>
+      </article>
+      <article class="card card-pink">
+        <h3>Antrian</h3>
+        <p>Jika semua petugas sibuk, entitas masuk antrian dengan aturan siapa datang lebih dulu dilayani lebih dulu (FIFO).</p>
+      </article>
+    </div>
+
+    <h3 class="section-title small-title">Cara memakai</h3>
+    <ol class="steps">
+      <li><strong>Pilih studi kasus</strong> di halaman Simulator. Tersedia studi kasus bawaan: bengkel, klinik, SPBU, bank, dan kantin kampus.</li>
+      <li><strong>Lihat flowchart</strong> untuk memastikan alurnya benar, lalu atur jumlah petugas, jumlah entitas, replikasi, dan seed.</li>
+      <li><strong>Jalankan simulasi</strong>, lalu baca Ringkasan, Grafik, Replay, dan Log Kejadian.</li>
+      <li><strong>Bandingkan skenario</strong> untuk melihat dampak menambah atau mengurangi petugas.</li>
+      <li><strong>Buat studi kasus baru</strong> di halaman Studi Kasus, atau tempel data observasi di halaman Data Historis.</li>
+    </ol>
+
+    <h3 class="section-title small-title">Replikasi dan seed</h3>
+    <div class="grid grid-2">
+      <article class="card card-green">
+        <h3>Replikasi</h3>
+        <p>Satu kali simulasi memakai angka acak, jadi hasilnya bisa berbeda setiap dijalankan. Replikasi adalah berapa kali simulasi diulang. Hasil akhir adalah rata-rata dari semua ulangan, lengkap dengan selang kepercayaan 95 persen. Makin banyak replikasi, hasil makin stabil, tetapi prosesnya makin lama.</p>
+      </article>
+      <article class="card card-orange">
+        <h3>Seed</h3>
+        <p>Seed adalah angka awal untuk pembangkit bilangan acak. Seed yang sama menghasilkan urutan angka acak yang sama, jadi hasil bisa diulang persis. Ganti seed untuk melihat hasil dengan urutan acak lain. Saat membandingkan dua pengaturan, pakai seed yang sama agar selisihnya murni karena pengaturan.</p>
+      </article>
+    </div>
+
+    <h3 class="section-title small-title">Cara membaca hasil</h3>
+    <div class="table-scroll">
+      <table class="table">
+        <thead><tr><th>Ukuran</th><th>Arti</th></tr></thead>
+        <tbody>
+          <tr><td>Rata-rata waktu tunggu</td><td>Rata-rata lama sebuah entitas menunggu di antrian, dijumlahkan dari semua tahap.</td></tr>
+          <tr><td>Utilisasi</td><td>Persentase waktu sumber daya sedang bekerja. Mendekati 100 persen artinya hampir tidak pernah menganggur.</td></tr>
+          <tr><td>Rata-rata panjang antrian</td><td>Jumlah entitas yang menunggu, dirata-rata terhadap waktu.</td></tr>
+          <tr><td>Waktu di sistem</td><td>Dari datang sampai pergi, termasuk menunggu dan dilayani.</td></tr>
+          <tr><td>Selang kepercayaan 95%</td><td>Rentang yang kira-kira memuat rata-rata sebenarnya, dihitung dari beberapa replikasi.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="section-title small-title">Batasan model</h3>
+    <ul class="bullets">
+      <li>Antrian memakai aturan FIFO tanpa prioritas dan tanpa entitas yang menyerah menunggu.</li>
+      <li>Satu sumber daya boleh dipakai beberapa tahap, misalnya resepsionis bengkel untuk pendaftaran dan pembayaran. Tahap-tahap itu berebut satu antrian yang sama.</li>
+      <li>Kualitas hasil mengikuti kualitas data. Jika hanya rata-rata yang diketahui, bentuk distribusinya adalah asumsi.</li>
+      <li>Simulasi dengan jumlah entitas kecil sangat dipengaruhi kebetulan. Pakai banyak replikasi.</li>
+    </ul>
+  </div>
+</section>

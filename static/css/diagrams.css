@@ -1,0 +1,187 @@
+/* Gaya SVG: flowchart, grafik, dan panel replay. Warna mengikuti tema lewat variabel CSS. */
+.diagram-scroll {
+  overflow-x: auto;
+  padding: 8px 0 12px;
+}
+
+.diagram-scroll svg {
+  display: block;
+  max-width: none;
+  height: auto;
+}
+
+.chart-card {
+  margin-bottom: 24px;
+}
+
+.chart-card h4 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+
+.chart-host {
+  overflow-x: auto;
+}
+
+.chart-host svg {
+  display: block;
+  max-width: none;
+}
+
+/* ----- Flowchart ----- */
+.fc-bg { fill: var(--card); }
+.fc-shadow { fill: var(--ink); stroke: var(--ink); stroke-width: 3; }
+.fc-shape { stroke: var(--ink); stroke-width: 3; }
+.fc-start { fill: var(--green); }
+.fc-end { fill: var(--red); }
+.fc-decision { fill: var(--yellow); }
+.fc-wait { fill: var(--pink); }
+.fc-arrival { fill: var(--cyan); }
+.fc-leave { fill: var(--orange); }
+.fc-res-1 { fill: var(--c-res-1); }
+.fc-res-2 { fill: var(--c-res-2); }
+.fc-res-3 { fill: var(--c-res-3); }
+.fc-res-4 { fill: var(--c-res-4); }
+.fc-res-5 { fill: var(--c-res-5); }
+.fc-res-6 { fill: var(--c-res-6); }
+.fc-edge { fill: none; stroke: var(--ink); stroke-width: 3; }
+.fc-arrow-head { fill: var(--ink); }
+.fc-group { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 7 5; }
+.fc-text { fill: #111111; font-family: var(--font-body); font-size: 14px; font-weight: 700; text-anchor: middle; }
+.fc-subtext { fill: #111111; font-family: var(--font-body); font-size: 11px; font-weight: 500; text-anchor: middle; }
+.fc-label { fill: var(--ink); font-family: var(--font-body); font-size: 13px; font-weight: 700; text-anchor: middle; }
+
+/* ----- Grafik ----- */
+.ch-axis { stroke: var(--ink); stroke-width: 2; fill: none; }
+.ch-grid { stroke: var(--ink); stroke-width: 1; opacity: 0.18; }
+.ch-tick { fill: var(--ink); font-family: var(--font-body); font-size: 11px; }
+.ch-title { fill: var(--ink); font-family: var(--font-body); font-size: 12px; font-weight: 700; }
+.ch-bar { stroke: var(--ink); stroke-width: 3; }
+.ch-line { fill: none; stroke-width: 3; stroke-linejoin: round; }
+.ch-error { stroke: var(--ink); stroke-width: 2.5; fill: none; }
+.ch-value { fill: var(--ink); font-family: var(--font-body); font-size: 12px; font-weight: 700; text-anchor: middle; }
+.ch-gantt-bar { stroke: var(--ink); stroke-width: 2; }
+.ch-gantt-text { fill: #111111; font-family: var(--font-body); font-size: 10px; font-weight: 700; text-anchor: middle; }
+.ch-legend-text { fill: var(--ink); font-family: var(--font-body); font-size: 12px; font-weight: 500; }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-swatch {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+}
+
+/* ----- Replay ----- */
+.replay-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.replay-slider {
+  flex: 1 1 200px;
+  min-width: 0;
+  accent-color: var(--pink);
+}
+
+.replay-info {
+  padding: 10px 14px;
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--yellow);
+  color: var(--on-accent);
+  font-weight: 700;
+}
+
+.replay-stage {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.station {
+  padding: 12px;
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--card-soft);
+}
+
+.station h4 {
+  margin: 0 0 8px;
+}
+
+.station-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.station-label {
+  min-width: 82px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.slot,
+.waiting-chip {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  height: 34px;
+  padding: 0 8px;
+  border: var(--border);
+  border-radius: 8px;
+  color: var(--on-accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.slot.is-free {
+  background: var(--card);
+  color: var(--muted);
+  border-style: dashed;
+}
+
+.slot.is-busy {
+  box-shadow: var(--shadow-small);
+}
+
+.waiting-chip {
+  background: var(--pink);
+}
+
+.waiting-more {
+  font-weight: 700;
+}
+
+@media (min-width: 720px) {
+  .replay-stage {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+
+/* Flowchart vertikal mengecil mengikuti lebar layar dan berada di tengah. */
+.diagram-scroll svg.fc-vertical {
+  max-width: 100%;
+  margin: 0 auto;
+}

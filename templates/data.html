@@ -1,0 +1,63 @@
+<section id="page-data" class="page" data-page="data" hidden>
+  <div class="container">
+    <h2 class="section-title">Data Historis</h2>
+    <p class="lead small">Ubah catatan waktu nyata menjadi angka yang siap dipakai di simulasi.</p>
+
+    <div class="grid grid-3 data-intro">
+      <article class="card card-yellow">
+        <h3>Untuk apa data historis?</h3>
+        <p>Simulasi butuh angka waktu, misalnya selang antar kedatangan dan lama layanan. Kalau angkanya hanya ditebak, hasilnya bisa meleset jauh. Data historis adalah catatan waktu nyata hasil pengamatan, misalnya lama perbaikan 10 mobil yang dicatat dengan stopwatch. Dari catatan itu aplikasi mencari pola yang paling cocok untuk dipakai di simulasi.</p>
+      </article>
+      <article class="card card-blue">
+        <h3>Cara memakainya</h3>
+        <ol class="steps">
+          <li>Tempel data <strong>satu jenis waktu saja</strong>, misalnya hanya lama perbaikan. Pisahkan dengan baris baru, spasi, atau titik koma. Koma dipakai sebagai desimal, misalnya 7,25.</li>
+          <li>Klik <strong>Analisis Data</strong> untuk melihat statistik, histogram, dan saran distribusi.</li>
+          <li>Pilih bagian studi kasus yang cocok, lalu klik <strong>Terapkan</strong>.</li>
+        </ol>
+      </article>
+      <article class="card card-green">
+        <h3>Cara membaca hasilnya</h3>
+        <p><strong>Rata-rata</strong> dan <strong>median</strong> menunjukkan waktu yang umum terjadi. <strong>Simpangan baku</strong> menunjukkan seberapa beragam datanya. <strong>Koefisien variasi</strong> adalah simpangan baku dibagi rata-rata. Nilai sekitar 1 cocok untuk distribusi eksponensial, di bawah 0,5 cocok untuk normal, selain itu data dipakai langsung. Makin banyak data, idealnya 30 atau lebih, makin dapat dipercaya sarannya.</p>
+      </article>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <label class="field">
+          <span class="field-label">Data waktu (<span id="data-unit">menit</span>)</span>
+          <textarea id="data-input" class="input mono" rows="9" placeholder="10&#10;12&#10;9,5&#10;30"></textarea>
+        </label>
+        <div class="btn-row">
+          <button id="data-analyze" class="btn btn-primary" type="button">Analisis Data</button>
+          <button id="data-example" class="btn btn-secondary" type="button">Isi Contoh</button>
+        </div>
+        <p id="data-error" class="alert alert-error" role="alert" hidden></p>
+      </div>
+
+      <div id="data-result" class="card">
+        <p class="empty">Hasil analisis akan tampil di sini.</p>
+      </div>
+    </div>
+
+    <div id="data-apply" class="card card-yellow" hidden>
+      <h3>Pakai saran ini di studi kasus</h3>
+      <p class="small">Studi kasus aktif: <strong id="apply-case-name"></strong>. Jika studi kasus aktif adalah bawaan, aplikasi membuat salinannya dulu.</p>
+      <div class="field-grid">
+        <label class="field">
+          <span class="field-label">Terapkan ke</span>
+          <select id="apply-target" class="input"></select>
+        </label>
+        <label class="field">
+          <span class="field-label">Bentuk</span>
+          <select id="apply-mode" class="input">
+            <option value="suggestion">Distribusi yang disarankan</option>
+            <option value="sequence">Data langsung, berurutan</option>
+            <option value="random">Data langsung, acak</option>
+          </select>
+        </label>
+      </div>
+      <button id="apply-button" class="btn btn-primary" type="button">Terapkan</button>
+    </div>
+  </div>
+</section>

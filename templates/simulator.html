@@ -1,0 +1,117 @@
+<section id="page-simulator" class="page" data-page="simulator" hidden>
+  <div class="container">
+    <h2 class="section-title">Simulator</h2>
+
+    <div class="sim-layout">
+      <aside class="panel card sim-controls" aria-label="Pengaturan simulasi">
+        <label class="field">
+          <span class="field-label">Studi kasus</span>
+          <select id="case-select" class="input"></select>
+        </label>
+        <p id="case-description" class="muted small"></p>
+        <div id="case-chips" class="chip-row"></div>
+
+        <div class="field-block">
+          <span class="field-label">Jumlah petugas</span>
+          <div id="capacity-fields" class="field-grid"></div>
+          <p class="small muted">Ubah angkanya, flowchart dan hasil simulasi ikut menyesuaikan.</p>
+        </div>
+
+        <div class="field-grid">
+          <label class="field">
+            <span class="field-label">Jumlah entitas</span>
+            <input id="setting-entities" class="input" type="number" min="1" max="500" step="1">
+          </label>
+          <label class="field">
+            <span class="field-label">Replikasi</span>
+            <input id="setting-replications" class="input" type="number" min="1" max="200" step="1" value="30">
+          </label>
+          <label class="field">
+            <span class="field-label">Seed acak</span>
+            <input id="setting-seed" class="input" type="number" step="1" value="42">
+          </label>
+        </div>
+
+        <details class="help">
+          <summary>Apa arti ketiga angka ini?</summary>
+          <p><strong>Jumlah entitas</strong> adalah berapa banyak pelanggan (mobil, pasien, dan sebagainya) yang datang dalam satu simulasi.</p>
+          <p><strong>Replikasi</strong> adalah berapa kali simulasi diulang. Satu simulasi memakai angka acak, jadi hasilnya bisa berbeda. Hasil akhir adalah rata-rata dari semua ulangan. Makin banyak replikasi, hasil makin stabil.</p>
+          <p><strong>Seed</strong> adalah angka awal pembangkit bilangan acak. Seed yang sama memberi hasil yang sama persis, jadi simulasi bisa diulang dan dibandingkan.</p>
+        </details>
+
+        <button id="run-button" class="btn btn-primary btn-block" type="button">Jalankan Simulasi</button>
+        <p id="run-status" class="small muted" role="status"></p>
+      </aside>
+
+      <div class="sim-results">
+        <div id="load-warnings"></div>
+
+        <div class="tab-strip" role="tablist" aria-label="Hasil simulasi">
+          <button class="tab-btn is-active" role="tab" data-result-tab="flowchart" type="button">Flowchart</button>
+          <button class="tab-btn" role="tab" data-result-tab="summary" type="button">Ringkasan</button>
+          <button class="tab-btn" role="tab" data-result-tab="charts" type="button">Grafik</button>
+          <button class="tab-btn" role="tab" data-result-tab="replay" type="button">Replay</button>
+          <button class="tab-btn" role="tab" data-result-tab="log" type="button">Log Kejadian</button>
+          <button class="tab-btn" role="tab" data-result-tab="scenario" type="button">Skenario</button>
+        </div>
+
+        <div class="card result-panel" id="result-flowchart" data-result-panel="flowchart">
+          <div class="panel-head">
+            <h3>Flowchart sistem</h3>
+            <div class="btn-row">
+              <button id="download-png" class="btn btn-small btn-secondary" type="button">Unduh PNG</button>
+              <button id="download-svg" class="btn btn-small btn-secondary" type="button">Unduh SVG</button>
+            </div>
+          </div>
+          <p class="muted small">Alur satu entitas dari datang sampai pergi. Diagram tersusun ke bawah otomatis jika layar kurang lebar.</p>
+          <div id="flowchart-host" class="diagram-scroll"></div>
+          <div id="flowchart-insight"></div>
+        </div>
+
+        <div class="card result-panel" id="result-summary" data-result-panel="summary" hidden>
+          <h3>Ringkasan hasil</h3>
+          <div id="summary-host"><p class="empty">Belum ada hasil. Klik Jalankan Simulasi.</p></div>
+        </div>
+
+        <div class="card result-panel" id="result-charts" data-result-panel="charts" hidden>
+          <h3>Grafik</h3>
+          <div id="charts-host"><p class="empty">Belum ada hasil. Klik Jalankan Simulasi.</p></div>
+        </div>
+
+        <div class="card result-panel" id="result-replay" data-result-panel="replay" hidden>
+          <h3>Replay kejadian</h3>
+          <div id="replay-host"><p class="empty">Belum ada hasil. Klik Jalankan Simulasi.</p></div>
+        </div>
+
+        <div class="card result-panel" id="result-log" data-result-panel="log" hidden>
+          <div class="panel-head">
+            <h3>Log Event Calendar</h3>
+            <button id="download-csv" class="btn btn-small btn-secondary" type="button" disabled>Unduh CSV</button>
+          </div>
+          <div id="log-host"><p class="empty">Belum ada hasil. Klik Jalankan Simulasi.</p></div>
+        </div>
+
+        <div class="card result-panel" id="result-scenario" data-result-panel="scenario" hidden>
+          <h3>Bandingkan skenario kapasitas</h3>
+          <p class="muted small">Ulangi simulasi dengan jumlah sumber daya berbeda, misalnya petugas dari 1 sampai 4. Angka acaknya sama, jadi selisihnya murni karena kapasitas.</p>
+          <div class="field-grid">
+            <label class="field">
+              <span class="field-label">Sumber daya</span>
+              <select id="scenario-resource" class="input"></select>
+            </label>
+            <label class="field">
+              <span class="field-label">Dari</span>
+              <input id="scenario-low" class="input" type="number" min="1" max="20" step="1" value="1">
+            </label>
+            <label class="field">
+              <span class="field-label">Sampai</span>
+              <input id="scenario-high" class="input" type="number" min="1" max="20" step="1" value="4">
+            </label>
+          </div>
+          <button id="scenario-run" class="btn btn-accent" type="button">Bandingkan</button>
+          <div id="scenario-host"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

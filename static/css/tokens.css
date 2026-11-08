@@ -1,0 +1,46 @@
+/* Token desain: warna, ukuran, bayangan. Tema terang adalah bawaan. */
+:root {
+  --ink: #111111;
+  --paper: #fff6dc;
+  --card: #ffffff;
+  --card-soft: #fff0c2;
+  --muted: #4a4a4a;
+  --on-accent: #111111;
+
+  --yellow: #ffd93d;
+  --pink: #ff6b9d;
+  --blue: #5aa9ff;
+  --green: #5fd68a;
+  --orange: #ff9f45;
+  --purple: #b58bff;
+  --cyan: #4fe3e0;
+  --red: #ff5d5d;
+
+  --c-res-1: var(--blue);
+  --c-res-2: var(--orange);
+  --c-res-3: var(--purple);
+  --c-res-4: var(--green);
+  --c-res-5: var(--cyan);
+  --c-res-6: var(--pink);
+
+  --border-width: 3px;
+  --border: var(--border-width) solid var(--ink);
+  --shadow: 6px 6px 0 var(--ink);
+  --shadow-small: 3px 3px 0 var(--ink);
+  --radius: 12px;
+
+  --font-body: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "Courier New", monospace;
+
+  --gutter: 16px;
+  --max-width: 1120px;
+}
+
+/* Tema gelap: teks dan garis terang di atas latar biru tua. Warna aksen tidak berubah. */
+:root[data-theme="dark"] {
+  --ink: #f7f3e8;
+  --paper: #12131f;
+  --card: #1d1f33;
+  --card-soft: #292c47;
+  --muted: #d6d2e4;
+}

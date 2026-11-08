@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QueueLab Simulator - Simulasi Antrian Sistem Layanan</title>
+  <meta name="description" content="Aplikasi web simulasi antrian berbasis kejadian diskrit untuk berbagai sistem layanan seperti bengkel, klinik, SPBU, dan bank, lengkap dengan flowchart, grafik, dan studi kasus yang bisa diubah.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/diagrams.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  {% include "header.html" %}
+  <main id="main">
+    {% include "home.html" %}
+    {% include "simulator.html" %}
+    {% include "cases.html" %}
+    {% include "data.html" %}
+    {% include "guide.html" %}
+  </main>
+  {% include "footer.html" %}
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

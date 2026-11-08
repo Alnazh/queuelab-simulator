@@ -1,0 +1,75 @@
+<section id="page-studi-kasus" class="page" data-page="studi-kasus" hidden>
+  <div class="container">
+    <div class="panel-head">
+      <h2 class="section-title">Studi Kasus</h2>
+      <div class="btn-row">
+        <button id="case-new" class="btn btn-primary" type="button">Buat Baru</button>
+        <label class="btn btn-secondary file-btn">
+          Impor JSON
+          <input id="case-import" type="file" accept="application/json,.json" hidden>
+        </label>
+      </div>
+    </div>
+    <p class="lead small">Studi kasus bawaan tidak bisa diubah, tetapi bisa disalin lalu diubah. Studi kasus buatanmu disimpan di browser ini.</p>
+
+    <div id="case-list" class="grid grid-2"></div>
+
+    <div id="case-editor" class="card editor" hidden>
+      <div class="panel-head">
+        <h3 id="editor-title">Studi kasus baru</h3>
+        <button id="editor-cancel" class="btn btn-small btn-secondary" type="button">Tutup</button>
+      </div>
+      <form id="editor-form" novalidate>
+        <div class="field-grid">
+          <label class="field">
+            <span class="field-label">Nama studi kasus</span>
+            <input id="editor-name" class="input" type="text" maxlength="40" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Nama entitas</span>
+            <input id="editor-entity" class="input" type="text" maxlength="40" placeholder="Mobil, Pasien, Pelanggan" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Satuan waktu</span>
+            <select id="editor-unit" class="input">
+              <option value="detik">detik</option>
+              <option value="menit" selected>menit</option>
+              <option value="jam">jam</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="field-label">Jumlah entitas</span>
+            <input id="editor-entities" class="input" type="number" min="1" max="500" step="1" value="20">
+          </label>
+        </div>
+        <label class="field">
+          <span class="field-label">Deskripsi singkat</span>
+          <textarea id="editor-description" class="input" rows="2" maxlength="400"></textarea>
+        </label>
+
+        <fieldset class="editor-block">
+          <legend>Kedatangan (waktu antar-kedatangan)</legend>
+          <div id="editor-arrival"></div>
+        </fieldset>
+
+        <fieldset class="editor-block">
+          <legend>Sumber daya</legend>
+          <div id="editor-resources"></div>
+          <button id="add-resource" class="btn btn-small btn-secondary" type="button">Tambah sumber daya</button>
+        </fieldset>
+
+        <fieldset class="editor-block">
+          <legend>Tahap layanan (berurutan)</legend>
+          <div id="editor-stages"></div>
+          <button id="add-stage" class="btn btn-small btn-secondary" type="button">Tambah tahap</button>
+        </fieldset>
+
+        <p id="editor-error" class="alert alert-error" role="alert" hidden></p>
+        <div class="btn-row">
+          <button class="btn btn-primary" type="submit">Simpan dan Pakai</button>
+          <button id="editor-cancel-bottom" class="btn btn-secondary" type="button">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
